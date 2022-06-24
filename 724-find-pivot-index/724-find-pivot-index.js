@@ -4,24 +4,19 @@
  */
 var pivotIndex = function(nums) {
     
+    let sum = 0;
+    for (const num of nums) {
+        sum += num;
+    } 
+    
+    let leftSum = 0;
     for (let i = 0; i < nums.length; i++) {
-        
-        let sumBefore = 0;
-        for (let j = i-1; j >= 0; j--) {
-            sumBefore += nums[j];
-        }
-        
-        let sumAfter = 0;
-        for (let j = i+1; j < nums.length; j++) {
-            sumAfter += nums[j];
-        }
-        
-        if (sumAfter === sumBefore) {
+        if (leftSum === (sum - leftSum - nums[i])) {
             return i;
         }
         
+        leftSum += nums[i];
     }
-    
     
     return -1;
 };
