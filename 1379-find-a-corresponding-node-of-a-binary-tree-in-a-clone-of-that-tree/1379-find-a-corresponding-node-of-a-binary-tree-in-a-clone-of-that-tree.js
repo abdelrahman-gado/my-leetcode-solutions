@@ -27,6 +27,14 @@ function inorder(o, c, target) {
 }
 
 var getTargetCopy = function(original, cloned, target) {
-    inorder(original, cloned, target)
+    if (cloned !== null && original !== null) {
+        if (cloned.val === target.val) {
+            ans = cloned;
+        }
+        
+        getTargetCopy(original.left, cloned.left, target);
+        getTargetCopy(original.right, cloned.right, target);
+    }
+    
     return ans;
 };
