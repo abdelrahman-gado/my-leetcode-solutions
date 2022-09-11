@@ -11,10 +11,7 @@
  * @return {TreeNode}
  */
 
-
-
-var constructMaximumBinaryTree = function(nums) {
-    var buildTree = function (nums, start, end) {
+var buildTree = function (nums, start, end) {
     
         if (start > end) {
             return null;
@@ -29,6 +26,8 @@ var constructMaximumBinaryTree = function(nums) {
 
         return root;
     }
+
+var constructMaximumBinaryTree = function(nums) {
     
     return buildTree(nums, 0, nums.length-1);
 };
