@@ -6,25 +6,20 @@ class Solution {
      * @return Integer[]
      */
     function pivotArray($nums, $pivot) {
-        $pvArr = [];
+        $smallerArr = [];
+        $equalArr = [];
+        $greaterArr = [];
+        
         foreach ($nums as $num) {
             if ($num < $pivot) {
-                $pvArr[] = $num;
+                $smallerArr[] = $num;
+            } elseif ($num > $pivot) {
+                $greaterArr[] = $num;
+            } else {
+                $equalArr[] = $num;
             }
         }
         
-        foreach ($nums as $num) {
-            if ($num === $pivot) {
-                $pvArr[] = $num;
-            }
-        }
-        
-        foreach ($nums as $num) {
-            if ($num > $pivot) {
-                $pvArr[] = $num;
-            }
-        }
-        
-        return $pvArr;
+        return [...$smallerArr, ...$equalArr, ...$greaterArr];
     }
 }
