@@ -9,6 +9,7 @@ class Solution {
     function daysBetweenDates($date1, $date2) {        
         $d1 = new DateTime($date1);
         $d2 = new DateTime($date2);
-        return $d1->diff($d2)->format("%a");
+        $diffDate = $d2->diff($d1);
+        return $diffDate->format("%a") ;
     }
 }
