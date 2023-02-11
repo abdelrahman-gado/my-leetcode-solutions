@@ -5,17 +5,8 @@ class Solution {
      * @return Boolean
      */
     function isPowerOfTwo($n) {
-        $num = $n;
-        if ($num === 1) {
-            return true;
-        }
-        
-        $ex = 0;
-        while ($num > 1) {
-            $num = floor($num / 2);
-            $ex++;
-        }
-        
-        return 2 ** $ex == $n;
+        if ($n === 0) return false;
+        $ex = intval(floor(log($n, 2)));
+        return 2 ** $ex === $n;
     }
 }
