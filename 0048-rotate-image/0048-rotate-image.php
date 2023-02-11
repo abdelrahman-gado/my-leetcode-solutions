@@ -15,21 +15,19 @@ class Solution {
             }
         }
         
-        return $matrix;
     }
     
-    function reorder(&$matrix) {
+    function reverseRows(&$matrix) {
         $n = count($matrix);
-        
         for ($i = 0; $i < $n; $i++) {
-            $matrix[$i] = array_reverse($matrix[$i]);
+            $arr = $matrix[$i];
+            $matrix[$i] = array_reverse($arr);
         }
-        
-        return $matrix;
+
     }
     
     function rotate(&$matrix) {
-        $matrix = $this->transpose($matrix);   
-        return $this->reorder($matrix);
+        $this->transpose($matrix);
+        $this->reverseRows($matrix);
     }
 }
