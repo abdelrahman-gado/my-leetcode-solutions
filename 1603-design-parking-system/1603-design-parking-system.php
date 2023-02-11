@@ -5,12 +5,10 @@ class ParkingSystem {
      * @param Integer $small
      */
     
-    private $parking = [];
+    private array $parking;
     
     function __construct($big, $medium, $small) {
-        $this->parking[1] = $big;
-        $this->parking[2] = $medium;
-        $this->parking[3] = $small;
+        $this->parking = [$big, $medium, $small];
     }
   
     /**
@@ -18,8 +16,8 @@ class ParkingSystem {
      * @return Boolean
      */
     function addCar($carType) {
-        if ($this->parking[$carType] > 0) {
-            $this->parking[$carType] -= 1;
+        if ($this->parking[$carType-1] > 0) {
+            $this->parking[$carType-1]--;
             return true;
         } else {
             return false;
@@ -27,8 +25,8 @@ class ParkingSystem {
     }
 }
 
-
-// // Your ParkingSystem object will be instantiated and called as such:
-//  $obj = ParkingSystem($big, $medium, $small);
-//  $ret_1 = $obj->addCar($carType);
- 
+/**
+ * Your ParkingSystem object will be instantiated and called as such:
+ * $obj = ParkingSystem($big, $medium, $small);
+ * $ret_1 = $obj->addCar($carType);
+ */
