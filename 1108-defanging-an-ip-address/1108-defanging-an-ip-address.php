@@ -5,6 +5,6 @@ class Solution {
      * @return String
      */
     function defangIPaddr($address) {
-        return preg_replace("/[.]/", "[.]", $address);
+        return str_replace(".", "[.]", $address);
     }
 }
