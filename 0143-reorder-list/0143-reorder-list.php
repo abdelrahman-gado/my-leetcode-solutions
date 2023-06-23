@@ -30,7 +30,6 @@ class Solution {
         
         $i = 0;
         $j = 0;
-        $k = 0;
         $temp = $head;
         while ($i < $length) {
             if ($i % 2 === 0) {
