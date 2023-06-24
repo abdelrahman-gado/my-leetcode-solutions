@@ -15,32 +15,60 @@ class Solution {
      * @param ListNode $head
      * @return NULL
      */
+    function reverseList($head) {
+        
+        if ($head === null) {
+            return null;
+        }
+        
+        $prev = null;
+        $next = $head;
+        
+        while($next !== null) {
+            $temp = $next->next;
+            $next->next = $prev;
+            $prev = $next;
+            $next = $temp;
+        }
+        
+        return $prev;
+    }
+    
+    
     function reorderList($head) {
         
-        $length = 0;
-        $list = [];
         
-        $temp = $head;
-        while ($temp !== null) {
-            $length++;
-            $list[] = $temp->val;
-            $temp = $temp->next;
+        $slow = $head;
+        $fast = $head->next;
+        
+        while ($fast !== null && $fast->next !== null) {
+            $slow = $slow->next;
+            $fast = $fast->next->next;
         }
         
         
-        $i = 0;
-        $j = 0;
-        $temp = $head;
-        while ($i < $length) {
-            if ($i % 2 === 0) {
-                $temp->val = $list[$j];
-                $j++;
-            } else {
-                $temp->val = $list[$length - $j];
-            }
-            
-            $i++;
-            $temp = $temp->next;
+        $temp = $slow;
+        $secondHead = $slow->next;
+        $slow = $slow->next;
+        while ($slow !== null) {
+            $slow = $slow->next;
+        }
+        
+        $temp->next = null;
+        
+        $secondHead = $this->reverseList($secondHead);
+        
+        $l = $head;
+        $r = $secondHead;
+        $ltemp = null;
+        $rtemp = null;
+        while ($l != null && $r !== null) {
+            $ltemp = $l->next;
+            $rtemp = $r->next;
+            $l->next = $r;
+            $r->next = $ltemp;
+            $l = $ltemp;
+            $r = $rtemp;
         }
         
         return $head;
