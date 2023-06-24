@@ -57,12 +57,28 @@ class Solution {
     function mergeKLists($lists) {
         
         $listLength = count($lists);
-        for ($i = 0; $i < $listLength - 1; $i++) {
-            $lists[$i + 1] = $this->mergeTwoLinkedLists($lists[$i], $lists[$i + 1]);
+        if ($lists === null || $listLength === 0) {
+            return null;
         }
         
-
-        return $lists[$listLength - 1];
+        while(count($lists) > 1) {
+            $mergedLists = [];
+            
+            for ($i = 0; $i < count($lists); $i += 2) {
+                $l1 = $lists[$i];
+                $l2 = null;
+                
+                if ($i + 1 < $listLength) {
+                    $l2 = $lists[$i+1];
+                }
+                
+                $mergedLists[] = $this->mergeTwoLinkedLists($l1, $l2);
+            }
+            
+            $lists = $mergedLists;
+        }
+        
+        return $lists[0];
     }
 
     
