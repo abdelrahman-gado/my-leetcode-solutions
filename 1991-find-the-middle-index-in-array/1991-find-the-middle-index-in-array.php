@@ -21,7 +21,6 @@ class Solution {
             $sumList[$i] = $currentSum;
         }
         
-        var_dump($sumList, $totalSum);
         return -1;
     }
 }
