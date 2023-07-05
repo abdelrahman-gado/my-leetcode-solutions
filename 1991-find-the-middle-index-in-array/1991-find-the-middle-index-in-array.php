@@ -7,23 +7,21 @@ class Solution {
     function findMiddleIndex($nums) 
     {
         $numsLength = count($nums);
-        $leftSum = 0;
+        $totalSum = array_sum($nums);
+        
+        $sumList = [];
         
         for ($i = 0; $i < $numsLength; $i++) {
-            
-            $rightSum = 0;
-            for ($j = $i + 1; $j < $numsLength; $j++) {
-                $rightSum += $nums[$j];
-            }
-            
-            if ($rightSum === $leftSum) {
+            $prevSum = ($i - 1 < 0) ? 0 : $sumList[$i - 1];
+            $currentSum = $prevSum + $nums[$i];
+            if ($prevSum === ($totalSum - $currentSum)) {
                 return $i;
             }
             
-            $leftSum += $nums[$i];
+            $sumList[$i] = $currentSum;
         }
         
-        
+        var_dump($sumList, $totalSum);
         return -1;
     }
 }
