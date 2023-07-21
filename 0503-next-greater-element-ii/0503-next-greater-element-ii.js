@@ -4,23 +4,22 @@
  */
 var nextGreaterElements = function(nums) {
     
-    const res = [];
-    const numsLen = nums.length;
-
-    for (let i = 0; i < numsLen; i++) {
-        let current = nums[i];
+    const res = new Array(nums.length);
+    const stack = [];
+    res.fill(-1);
+    
+    for (let i = 2 * nums.length - 1; i >= 0; --i) {
         
-        let nextGreater = -1;
-        for (let j = i+1; j < nums.length; j++) {
-            if (nums[j] > current) {
-                nextGreater = nums[j];
-                break;
-            }
+        const current = nums[i % nums.length];
+        
+        while (stack.length > 0 && nums[stack[stack.length - 1]] <= current) {
+            stack.pop();
         }
         
-        res.push(nextGreater);
-        nums.push(current);
+        res[i % nums.length] = stack.length === 0 ? -1 : nums[stack[stack.length - 1]];
+        stack.push(i % nums.length);
     }
     
-    return res;
+    
+    return res;    
 };
