@@ -5,19 +5,19 @@
 var dailyTemperatures = function(temperatures) {
     
     const res = new Array(temperatures.length);
+    const stack = [];
     res.fill(0);
     
     for (let i = 0; i < temperatures.length; i++) {
         
-        let days = 0;
-        for (let j = i + 1; j < temperatures.length; j++) {
-            if (temperatures[j] > temperatures[i]) {
-                days = j - i;
-                break;
-            }
+        const currentTemp = temperatures[i];
+        
+        while (stack.length > 0 && currentTemp > temperatures[stack[stack.length-1]]) {
+            const index = stack.pop(); 
+            res[index] = i - index;
         }
         
-        res[i] = days;
+        stack.push(i);
     }
     
     return res;
