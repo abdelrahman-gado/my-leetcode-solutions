@@ -5,28 +5,26 @@
  */
 var nextGreaterElement = function(nums1, nums2) {
     
-    const result = [];
-    
-    for (const num1 of nums1) {
-        
-        let found = false;
-        let nextGreater = -1;
-        for (const num2 of nums2) {
-            
-            if (!found && num1 === num2) {
-                found = true;
-                continue;
-            }
-            
-            if (found && num2 > num1 && num2 > nextGreater) {
-                nextGreater = num2;
-                break;
-            }
-        }
-        
-        result.push(nextGreater);
+    const map = new Map();
+    for (let i = 0; i < nums1.length; i++) {
+        map.set(nums1[i], i);
     }
     
+    let res = new Array(nums1.length);
+    const stack = [];
+    res.fill(-1);
     
-    return result;
+    for (const cur of nums2) {
+        
+        while (stack.length > 0 && cur > stack[stack.length - 1]) {
+            const item = stack.pop();
+            res[map.get(item)] = cur;
+        }
+        
+        if (map.has(cur)) {
+            stack.push(cur);
+        }
+    }
+    
+    return res;
 };
