@@ -7,19 +7,13 @@ class Solution {
     function missingNumber($nums) {
         
         $count = count($nums);
-        sort($nums);
-        $i = 0;
+        $foundSum = array_sum($nums);
+        $actualSum = 0;
         
-        
-        foreach ($nums as $num) {
-            if ($i !== $num) {
-                return $i;
-            }
-            
-            $i++;
+        for($i = 0; $i <= $count; $i++) {
+            $actualSum += $i;
         }
         
-        
-        return $i;
+        return $actualSum - $foundSum;
     }
 }
