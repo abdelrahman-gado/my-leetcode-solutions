@@ -6,19 +6,20 @@ class Solution {
      */
     function missingNumber($nums) {
         
-        $n = count($nums);
-        $sortedNums = $nums;
-        sort($sortedNums);
-        
+        $count = count($nums);
+        sort($nums);
         $i = 0;
-        while ($i <= $n) {
-            if ($i !== $sortedNums[$i]) {
+        
+        
+        foreach ($nums as $num) {
+            if ($i !== $num) {
                 return $i;
             }
             
             $i++;
         }
         
-        return null;
+        
+        return $i;
     }
 }
