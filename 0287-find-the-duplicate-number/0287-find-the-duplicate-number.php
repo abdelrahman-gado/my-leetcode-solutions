@@ -6,13 +6,24 @@ class Solution {
      */
     function findDuplicate($nums) {
         
-        $map = [];
+        $slow = 0;
+        $fast = 0;
         
-        for ($i = 0; $i < count($nums); $i++) {
-            if (array_key_exists($nums[$i], $map)) {
-                return $nums[$i];
-            } else {
-                $map[$nums[$i]] = true;
+        while (true) {
+            $slow = $nums[$slow];
+            $fast = $nums[$nums[$fast]];
+            if ($slow === $fast) {
+                break;
+            }
+        }
+        
+        
+        $slow2 = 0;
+        while (true) {
+            $slow = $nums[$slow];
+            $slow2 = $nums[$slow2];
+            if ($slow === $slow2) {
+                return $slow;
             }
         }
         
