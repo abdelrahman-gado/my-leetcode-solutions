@@ -6,16 +6,15 @@ class Solution {
      */
     function findDuplicate($nums) {
         
-        $len = count($nums);
-        $sortedNums = $nums;
-        sort($sortedNums);
+        $map = [];
         
-        for ($i = 0; $i < $len-1; $i++) {
-            if ($sortedNums[$i] === $sortedNums[$i + 1]) {
-                return $sortedNums[$i];
+        for ($i = 0; $i < count($nums); $i++) {
+            if (array_key_exists($nums[$i], $map)) {
+                return $nums[$i];
+            } else {
+                $map[$nums[$i]] = true;
             }
         }
-        
         
         return false;
     }
