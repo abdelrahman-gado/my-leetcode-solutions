@@ -15,14 +15,6 @@ class Solution {
             $map[$order[$i]] = $i;
         }
         
-        $minLen = 0;
-        for ($i = 0; $i < $wordsLen; $i++) {
-            $wordLen = strlen($words[$i]);
-            if ($wordLen < $minLen)
-                $minLen = $wordLen;
-        }
-        
-        
         
         for ($i = 0; $i < $wordsLen-1; $i++) {
             for ($j = 0; $j < strlen($words[$i]); $j++) {
