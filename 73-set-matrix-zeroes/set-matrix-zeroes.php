@@ -12,24 +12,32 @@ class Solution {
 
         $n = count($matrix[0]);
 
-        $zerosPlaces = [];
         for ($i = 0; $i < $m; $i++) {
             for ($j = 0; $j < $n; $j++) {
                 if ($matrix[$i][$j] === 0) {
-                    $zerosPlaces[] = [$i, $j];
+                    $matrix[$i][$j] = 'a';
                 }
             }
         }
 
-        foreach ($zerosPlaces as $point) {
-            // zeros the row
-            for ($k = 0; $k < $n; $k++) {
-                $matrix[$point[0]][$k] = 0;
-            }
-
-            // zeros the col
-            for ($l = 0; $l < $m; $l++) {
-                $matrix[$l][$point[1]] = 0;
+        for ($i = 0; $i < $m; $i++) {
+            for ($j = 0; $j < $n; $j++) {
+                if ($matrix[$i][$j] === 'a') {
+                    $matrix[$i][$j] = 0;
+                    // zeros the row
+                    for ($k = 0; $k < $n; $k++) {
+                        if ($matrix[$i][$k] !== 'a'){
+                            $matrix[$i][$k] = 0;
+                        }
+                    }
+    
+                    // zeros the col
+                    for ($l = 0; $l < $m; $l++) {
+                        if ($matrix[$l][$j] !== 'a') {
+                            $matrix[$l][$j] = 0;
+                        }
+                    }
+                }
             }
         }
 
